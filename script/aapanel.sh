@@ -112,35 +112,20 @@ function start_menu(){
     echo
     read -p "Lütfen yapmak istediğiniz işlem rakamını giriniz:" menuNumberInput
     case "$menuNumberInput" in
-        1 )
-           aapanel-install
-        ;;
-        2 )
-           downgrade-aapanel
-        ;;
-        3 )
-           panel-happy
-        ;;
-        4 )
-           language-turkish
-        ;;
-        5 )
-           log
-        ;;
-        6 )
-           uninstall
-        ;;
-        7 )
-           clean-up-trash
-        ;;
-        0 )
-            exit 1
-        ;;
-        * )
+        1) aapanel-install ;;
+        2) downgrade-aapanel ;;
+        3) panel-happy ;;
+        4) language-turkish ;;
+        5) log ;;
+        6) uninstall ;;
+        7) clean-up-trash ;;
+        0) exit 1 ;;
+        *)
             clear
             red "Lütfen geçerli bir rakam girin!"
             start_menu
         ;;
     esac
+
 }
 start_menu "first"
