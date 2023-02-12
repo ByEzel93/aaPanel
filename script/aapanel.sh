@@ -68,7 +68,7 @@ function panel-happy() {
 
 
 # Clean Trash
-function clean_up_trash(){
+function clean-up-trash(){
     if [ -f "aaPanel_EN-6.8.23.zip" ] && [ -f "aapanel-install.sh" ]; then
         rm aaPanel_EN-6.8.23.zip aapanel-install.sh -rf
         echo "Başarıyla temizlendi."
