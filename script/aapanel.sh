@@ -43,25 +43,41 @@ rm /root/aaPanell_EN-6.8.23.zip /root/panel/ -rf
 
 
 # Crack
-function panel-happy(){
-red "Calıştırmadan önce lütfen yazılım mağazasını manuel olarak bir kez açın."
-sed -i 's|"endtime": -1|"endtime": 999999999999|g' /www/server/panel/data/plugin.json
-sed -i 's|"pro": -1|"pro": 0|g' /www/server/panel/data/plugin.json
-chattr +i /www/server/panel/data/plugin.json
-chattr -i /www/server/panel/data/repair.json
-rm /www/server/panel/data/repair.json
-cd /www/server/panel/data
-wget https://ghproxy.com/https://raw.githubusercontent.com/ByEzel93/aaPanel/main/resource/repair.json
-chattr +i /www/server/panel/data/repair.json
-red "Başarıyla crack yapıldı."
+function panel-happy() {
+  echo "Öncelikle yazılım mağazasını manuel olarak açınız."
+  if [ -f "/www/server/panel/data/plugin.json" ]; then
+    sed -i 's|"endtime": -1|"endtime": 999999999999|g' /www/server/panel/data/plugin.json
+    sed -i 's|"pro": -1|"pro": 0|g' /www/server/panel/data/plugin.json
+    chattr +i /www/server/panel/data/plugin.json
+    chattr -i /www/server/panel/data/repair.json
+    if [ -f "/www/server/panel/data/repair.json" ]; then
+      rm /www/server/panel/data/repair.json
+    fi
+    cd /www/server/panel/data || exit
+    wget https://ghproxy.com/https://raw.githubusercontent.com/ByEzel93/aaPanel/main/resource/repair.json
+    if [ -f "repair.json" ]; then
+      chattr +i repair.json
+      echo -e "\033[31mBaşarıyla crack yapıldı.\033[0m"
+    else
+      echo -e "\033[31mDosya indirme işlemi başarısız.\033[0m"
+    fi
+  else
+    echo -e "\033[31mplugin.json dosyası bulunamadı.\033[0m"
+  fi
 }
 
+
 # Clean Trash
-function clean-up-trash(){
-rm LinuxPanel_EN-6.8.23.zip aapanel-install.sh/ -rf
-red "Başarıyla temizlendi."
-red "Bu betiği kaldırmak isterseniz, şu komutu çalıştırın:"rm aapanel.sh -rf""
+function clean_up_trash(){
+    if [ -f "aaPanel_EN-6.8.23.zip" ] && [ -f "aapanel-install.sh" ]; then
+        rm aaPanel_EN-6.8.23.zip aapanel-install.sh -rf
+        echo "Başarıyla temizlendi."
+        echo "Bu betiği kaldırmak isterseniz, şu komutu çalıştırın: rm aapanel.sh -rf"
+    else
+        echo "Belirtilen dosyalar bulunamadı. Lütfen dosya adının doğruluğunu kontrol edin."
+    fi
 }
+
 
 # Uninstaller
 function uninstall(){
