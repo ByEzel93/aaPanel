@@ -30,7 +30,7 @@ bash "/root/aapanel-install.sh"
 
 # aapanel Downgrade
 function downgrade-aapanel(){
-wget -O "/root/LinuxPanel_EN-6.8.23.zip" "https://ghproxy.com/https://github.com/ByEzel93/aaPanel/releases/download/6.8.23/aaPanel_EN-6.8.23.zip"
+wget -O "/root/aaPanel_EN-6.8.23.zip" "https://ghproxy.com/https://github.com/ByEzel93/aaPanel/releases/download/6.8.23/aaPanel_EN-6.8.23.zip"
 red "İndirme tamamlandı, sürüm düşürülüyor."
 unzip aaPanel_EN-6.8.23.zip
 cd /root/panel
